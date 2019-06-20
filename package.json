@@ -1,7 +1,19 @@
 {
-  "private": true,
-  "homepage": ".",
-  "proxy": "http://localhost:8080",
+  "name": "react-library-starter",
+  "version": "1.0.0",
+  "description": "A react library starter project",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --watch",
+    "test:once": "jest",
+    "lint": "tslint --project .",
+    "lint:fix": "tslint --fix --project .",
+    "storybook": "start-storybook",
+    "check-compile": "tsc --noEmit",
+    "ci": "yarn compile && yarn test:once && yarn lint"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
@@ -13,22 +25,6 @@
     "styled-components": "^4.2.0",
     "typescript": "3.4.3"
   },
-  "scripts": {
-    "build": "tsc",
-    "test": "jest --watch",
-    "test:once": "jest",
-    "lint": "tslint --project .",
-    "lint:fix": "tslint --fix --project .",
-    "storybook": "start-storybook",
-    "check-compile": "tsc --noEmit",
-    "ci": "yarn compile && yarn test:once && yarn lint"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@storybook/react": "^5.1.9",
