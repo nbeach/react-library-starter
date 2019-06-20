@@ -13,7 +13,7 @@
     "lint:fix": "tslint --fix --project .",
     "storybook": "start-storybook",
     "check-compile": "tsc --noEmit",
-    "ci": "yarn compile && yarn test:once && yarn lint"
+    "ci": "yarn check-compile && yarn test:once && yarn lint"
   },
   "dependencies": {
     "axios": "^0.18.0",
