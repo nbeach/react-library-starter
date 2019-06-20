@@ -3,5 +3,5 @@ export interface AppState {
 }
 
 export interface ViewState  {
-
+    readonly message: string
 }

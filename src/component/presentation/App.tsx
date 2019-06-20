@@ -1,6 +1,5 @@
 import React from "react"
+import {MessageContainer} from "../container/MessageContainer"
 
 export const App = () =>
-    <div>
-        Hello World!
-    </div>
+    <MessageContainer/>

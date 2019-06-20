@@ -1,11 +1,12 @@
 {
   "name": "react-library-starter",
-  "version": "1.0.0",
-  "description": "A react library starter project",
+  "version": "1.0.1",
+  "private": true,
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "clean": "rimraf src/**/*.js src/**/*.js.map src/**/*.d.ts",
     "test": "jest --watch",
     "test:once": "jest",
     "lint": "tslint --project .",
@@ -47,6 +48,7 @@
     "enzyme-adapter-react-16": "^1.13.2",
     "jest": "^24.8.0",
     "redux-mock-store": "^1.5.3",
+    "rimraf": "^2.6.3",
     "ts-jest": "^24.0.2",
     "tslint": "^5.15.0",
     "tslint-immutable": "^5.5.2"
