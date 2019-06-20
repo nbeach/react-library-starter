@@ -1,17 +1,18 @@
 import {all, call, put, take} from "redux-saga/effects"
-import {retrieveThing} from "../repository/ExampleRepository"
-import {exampleAction, MessageClickedAction} from "../model/action/MessageClickedAction"
+import {ViewWidgetAction, viewWidgetAction} from "../model/action/ViewWidgetAction"
+import {retrieveWidget} from "../repository/ExampleRepository"
+import {widgetLoadedAction} from "../model/action/WidgetLoadedAction"
 
-export function* exampleRetrievalSaga() {
+export function* retrieveWidgetSaga() {
     while (true) {
-        const action: MessageClickedAction = yield take(exampleAction.type)
-        const thing = yield call(retrieveThing, action.someProp)
-        yield put(exampleAction({ someProp: thing }))
+        const action: ViewWidgetAction = yield take(viewWidgetAction.type)
+        const widget = yield call(retrieveWidget, action.id)
+        yield put(widgetLoadedAction({ widget }))
     }
 }
 
 export default function* rootSaga() {
     yield all([
-        exampleRetrievalSaga(),
+        retrieveWidgetSaga(),
     ])
 }
