@@ -1,14 +1,26 @@
 import {applyMiddleware, compose, createStore} from "redux"
-import rootReducer from "./reducer/rootReducer"
 import rootSaga from "./saga/rootSaga"
 import createSagaMiddleware from "@redux-saga/core"
+import {loadUser} from "redux-oidc"
+import {userManager} from "./util/userManager"
+import {routerMiddleware} from "connected-react-router"
+import createBrowserHistory from "history/createBrowserHistory"
+import {createRootReducer} from "./reducer/rootReducer"
 
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
+export const history = createBrowserHistory()
 export const initializeStore = () => {
-    const sagaMiddleware = createSagaMiddleware()
-    const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)))
-    sagaMiddleware.run(rootSaga)
+    const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
+    const sagaMiddleware = createSagaMiddleware()
+
+    const enhancers = composeEnhancers(
+        applyMiddleware(sagaMiddleware),
+        applyMiddleware(routerMiddleware(history)),
+    )
+
+    const store = createStore(createRootReducer(history), enhancers)
+
+    sagaMiddleware.run(rootSaga)
+    loadUser(store, userManager)
     return store
 }
